@@ -41,10 +41,7 @@ const ListaDeTareas = () => {
   //   }
   // }
 
-  const eliminarLista = (tarea) => {
-    if(!setTareas([])) {
-      ;
-    }
+  const eliminarLista = () => {
     setTareas([]);
   }
 
