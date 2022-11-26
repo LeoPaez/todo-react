@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/Tarea.css"
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const variants = {
   hidden: {
