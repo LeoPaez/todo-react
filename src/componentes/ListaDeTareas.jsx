@@ -3,6 +3,7 @@ import TareaInput from "./TareaInput";
 import Tarea from "./Tarea"
 import "../stylesheets/ListaDeTareas.css";
 import BotonLimpiar from "./BotonLimpiar";
+import { AnimatePresence, Reorder } from "framer-motion";
 
 const ListaDeTareas = () => {
   const [tareas, setTareas] = useState([]);
@@ -58,29 +59,46 @@ const ListaDeTareas = () => {
   return (
     <>
       <TareaInput onSubmit={agregarTarea} />
-      <div className="tareas-lista-contenedor">
-        {
-          tareas.map((tarea) =>
-          <Tarea
-          key={tarea.id}
-          id={tarea.id}
-          texto={tarea.texto}
-          completada={tarea.completada}
-          eliminarTarea={eliminarTarea}
-          completarTarea={completarTarea} />
-          )
-        }
-        <div className="boton-limpiar-contenedor">
-          {/* {(tareas.length === 0) ? 
-            null : <BotonLimpiar
-            eliminarLista={eliminarLista}/>
+      {/* <div className="tareas-lista-contenedor"> */}
+      <Reorder.Group className="tareas-lista-contenedor" axis="y" values={tareas} onReorder={setTareas}>
+        <AnimatePresence>
+          {/* {
+            tareas.map((tarea, index) =>
+            <Tarea
+            key={tarea.id}
+            id={tarea.id}
+            texto={tarea.texto}
+            completada={tarea.completada}
+            eliminarTarea={eliminarTarea}
+            completarTarea={completarTarea}
+            index={index} />
+            )
           } */}
-          {(tareas.length !== 0) &&
-            <BotonLimpiar
-            eliminarLista={eliminarLista}/>
-          }
-        </div>
-      </div>
+            {tareas.map((tarea, index) => (
+              <Reorder.Item key={tarea.id} value={tarea}>
+                <Tarea
+                  key={tarea.id}
+                  id={tarea.id}
+                  texto={tarea.texto}
+                  completada={tarea.completada}
+                  eliminarTarea={eliminarTarea}
+                  completarTarea={completarTarea}
+                  index={index} />
+              </Reorder.Item>
+            ))}
+          <div className="boton-limpiar-contenedor">
+            {/* {(tareas.length === 0) ? 
+              null : <BotonLimpiar
+              eliminarLista={eliminarLista}/>
+            } */}
+            {(tareas.length !== 0) &&
+              <BotonLimpiar
+              eliminarLista={eliminarLista}/>
+            }
+          </div>
+        </AnimatePresence>
+      </Reorder.Group>
+      {/* </div> */}
     </>
   )
 }

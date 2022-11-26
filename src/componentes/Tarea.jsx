@@ -1,21 +1,42 @@
 import React from "react";
 import "../stylesheets/Tarea.css"
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
 
-const Tarea = ({ id, texto, completada, completarTarea, eliminarTarea }) => {
+const variants = {
+  hidden: {
+    y: -20
+  },
+  visible: ({ delay, opacity }) => ({
+    y: 0,
+    transition: {
+      delay,
+      opacity,
+      duration: 0.5
+    }
+  }),
+  exit: {
+    opacity: 0,
+    y: -20
+  }
+}
+
+const Tarea = ({ id, texto, completada, completarTarea, eliminarTarea, index }) => {
   return (
-    <div className={completada ? "tarea-contenedor slide-bottom completada" : "tarea-contenedor slide-bottom"}>
+    <motion.div initial="hidden" animate="visible" exit="exit" custom={{ delay: (index) * 0.2 }} layoutId={id} variants={variants} className={completada ? "tarea-contenedor completada" : "tarea-contenedor"}>
       <div
         className="tarea-texto"
         onClick={() => completarTarea(id)}>
         {texto}
       </div>
-      <div
+      <motion.div
+        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.1 }}
         className="tarea-contenedor-iconos"
         onClick={() => eliminarTarea(id)}>
         <AiOutlineCloseCircle className="tarea-icono" />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
