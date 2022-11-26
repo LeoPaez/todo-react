@@ -74,17 +74,17 @@ const ListaDeTareas = () => {
             index={index} />
             )
           } */}
-            {tareas.map((tarea, index) => (
-              <Reorder.Item key={tarea.id} value={tarea}>
-                <Tarea
-                  key={tarea.id}
-                  id={tarea.id}
-                  texto={tarea.texto}
-                  completada={tarea.completada}
-                  eliminarTarea={eliminarTarea}
-                  completarTarea={completarTarea}
-                  index={index} />
-              </Reorder.Item>
+          {tareas.map((tarea, index) => (
+            <Reorder.Item key={tarea.id} value={tarea}>
+              <Tarea
+                key={tarea.id}
+                id={tarea.id}
+                texto={tarea.texto}
+                completada={tarea.completada}
+                eliminarTarea={eliminarTarea}
+                completarTarea={completarTarea}
+                index={index} />
+            </Reorder.Item>
             ))}
           <div className="boton-limpiar-contenedor">
             {/* {(tareas.length === 0) ? 
