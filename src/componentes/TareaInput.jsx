@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../stylesheets/TareaInput.css"
 import { v4 as uuidv4 } from "uuid"
+import Swal from 'sweetalert2'
 
 const TareaInput = (props) => {
 
@@ -18,6 +19,17 @@ const TareaInput = (props) => {
       completada: false
     }
     props.onSubmit(tareaNueva)
+    e.target.reset()
+    setInput("")
+  }
+
+  const chequearInput = () => {
+    if(input === "") {
+      Swal.fire({
+        title: 'Por favor ingresa una tarea',
+        confirmButtonColor: "#7b2cbf",
+      });
+    }
   }
 
   return (
@@ -33,13 +45,13 @@ const TareaInput = (props) => {
       /> */}
       <div className="inputbox">
         <input
-        required="required"
+        // required="required"
         type="text"
         onChange={manejarCambio}/>
         <span>Escribe una tarea</span>
         <i></i>
       </div>
-      <button className="tarea-boton">
+      <button className="tarea-boton" onClick={chequearInput}>
         Agregar Tarea
       </button>
     </form>

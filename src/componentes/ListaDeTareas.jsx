@@ -4,10 +4,13 @@ import Tarea from "./Tarea"
 import "../stylesheets/ListaDeTareas.css";
 import BotonLimpiar from "./BotonLimpiar";
 import { AnimatePresence, Reorder } from "framer-motion";
+import Swal from 'sweetalert2'
+
 
 const ListaDeTareas = () => {
   const [tareas, setTareas] = useState([]);
-
+  // const [existing, setExisting] = useState(false)
+  
   useEffect(() => {
     let data = localStorage.getItem("tareas")
     if (data) {
@@ -18,18 +21,30 @@ const ListaDeTareas = () => {
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(tareas))
   }, [tareas])
-  
+
+  const isExistingCartProduct = (tarea) => {
+    return tareas.find((item) => item.texto === tarea.texto);
+  };
+
+
   const agregarTarea = (tarea) => {
-    console.log(tarea);
     if (tarea.texto.trim()) {
       tarea.texto = tarea.texto.trim();
       const tareasActualizadas = [tarea, ...tareas];
+      if (isExistingCartProduct(tarea)){
+        Swal.fire({
+          title: 'Esa tarea ya existe',
+          confirmButtonColor: "#7b2cbf",
+        });
+
+        return
+      }
       setTareas(tareasActualizadas);
     }
     // if(!setTareas([])) {
-
-    // }
-  }
+      
+      // }
+    }
 
   const eliminarTarea = (id) => {
     const tareasActualizadas = tareas.filter(tarea => tarea.id !== id)

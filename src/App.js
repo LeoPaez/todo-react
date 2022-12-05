@@ -1,17 +1,22 @@
 import './App.css';
-import ListaDeTareas from './componentes/ListaDeTareas';
-import { motion } from "framer-motion";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Pokemon from "./pages/Pokemon"
+import ToDo from './pages/ToDo';
+import Nav from './componentes/Nav';
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <div className="aplicacion-tareas">
-        {/* <Logo /> */}
-        <motion.div initial={{ scale: 0.5 }} animate={{ scale: 1 }} transition={{ duration: 0.4 }} layout className="tareas-lista-principal">
-          <h1>Mis tareas</h1>
-          <ListaDeTareas />
-        </motion.div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+            <Route path='/' element={ <Nav /> }>
+              <Route path='/asd' element={ <ToDo /> }/>
+              <Route path='/pokemon' element={ <Pokemon /> }/>
+              <Route path='/home' element={ <Home /> }/>
+            </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
