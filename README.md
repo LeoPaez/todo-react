@@ -1,3 +1,6 @@
+# To Do List
+Creado con React y con el uso de animaciones de Framer Motion
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
