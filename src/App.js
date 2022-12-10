@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path='/' element={ <Nav /> }>
-              <Route path='/asd' element={ <ToDo /> }/>
+              <Route path='/' element={ <ToDo /> }/>
               <Route path='/pokemon' element={ <Pokemon /> }/>
               <Route path='/home' element={ <Home /> }/>
             </Route>

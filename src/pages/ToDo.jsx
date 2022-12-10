@@ -1,8 +1,6 @@
 import React from 'react'
 import ListaDeTareas from '../componentes/ListaDeTareas';
 import { motion } from "framer-motion";
-import Nav from '../componentes/Nav';
-
 
 const ToDo = () => {
   return (

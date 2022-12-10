@@ -1,9 +1,10 @@
 import React from 'react'
+import PokemonData from '../componentes/PokemonData'
 
 const Pokemon = () => {
   return (
     <>
-      <h1>Hola</h1>
+      <PokemonData/>
     </>
   )
 }
