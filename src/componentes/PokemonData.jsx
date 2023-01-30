@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import "../types.css"
-import Swal from 'sweetalert2'
 
 const Cont = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Cont = styled.div`
   height: 60vh;
   gap: 20px;
 `
-const ContSearch = styled.div`
+const ContSearch = styled.form`
   display: flex;
   width: 300px;
   height: 30px;
@@ -94,6 +93,10 @@ const TypeTag = styled.div`
 
 
 function PokemonData() {
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+  }
   
   const [pokemonName, setPokemonName] = useState('bulbasaur');
 
@@ -118,7 +121,7 @@ function PokemonData() {
 
   return (
     <Cont>
-      <ContSearch>
+      <ContSearch onSubmit={onSubmit}>
         <Input value={pokemonName}  onChange={(event) => setPokemonName(event.target.value)} />
         <Button type="submit" onClick={() => refetch()}>Buscar</Button>
       </ContSearch>

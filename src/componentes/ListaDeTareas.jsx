@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import TareaInput from "./TareaInput";
 import Tarea from "./Tarea"
 import "../stylesheets/ListaDeTareas.css";
 import BotonLimpiar from "./BotonLimpiar";
 import { AnimatePresence, Reorder } from "framer-motion";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { TodoContext } from "../contexto/Contexto";
 
 
 const ListaDeTareas = () => {
-  const [tareas, setTareas] = useState([]);
-  // const [existing, setExisting] = useState(false)
-  
+  const {tareas, setTareas} = useContext(TodoContext)
+
   useEffect(() => {
     let data = localStorage.getItem("tareas")
     if (data) {
       setTareas(JSON.parse(data));
     }
-  }, [])
+  }, [setTareas])
   
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(tareas))
