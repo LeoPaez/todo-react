@@ -40,14 +40,8 @@
 
 /* Colores */
 
-.tarea-contenedor:nth-child(3n + 1) {
-  background-color: #10002b;
-}
-.tarea-contenedor:nth-child(3n + 2) {
+.tarea-contenedor {
   background-color: #240046;
-}
-.tarea-contenedor:nth-child(3n + 3) {
-  background-color: #3c096c;
 }
 
 .tarea-texto {
